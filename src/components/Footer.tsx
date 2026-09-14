@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume, onOpenContact, onO
 
         {/* Bottom copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#80868b]">
-          <p>© {new Date().getFullYear()} {PERSONAL_INFO.name}. Designed in Google PM Framework Style.</p>
+          <p>© {new Date().getFullYear()} {PERSONAL_INFO.name}. Development Nexcent Tech</p>
           <p className="flex items-center gap-4">
             <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
               LinkedIn

@@ -110,7 +110,7 @@ export default function App() {
           <button
             id="floating-schedule-call-btn"
             onClick={() => setIsScheduleCallOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] dark:bg-[#1a73e8] dark:hover:bg-[#1765cc] text-white text-xs sm:text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer border border-white/20"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] dark:bg-[#1a73e8] dark:hover:bg-[#1765cc] text-white text-xs sm:text-sm font-semibold shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/40 dark:shadow-blue-900/40 dark:hover:shadow-blue-500/50 hover:ring-4 hover:ring-blue-500/20 dark:hover:ring-blue-400/25 hover:scale-105 active:scale-[0.98] transition-all duration-200 cursor-pointer border border-white/20"
             title="Schedule a 1:1 Call with Omar"
           >
             <span className="relative flex h-2 w-2">
