@@ -251,9 +251,18 @@ export const GooglePmPillarsSection: React.FC = () => {
               <div className="pt-2">
                 <a
                   href="#tech-experience"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#2563eb] dark:text-[#60a5fa] bg-[#eff6ff] dark:bg-[#1e293b] hover:bg-[#dbeafe] dark:hover:bg-[#2563eb]/20 transition-colors w-fit group"
+                  id="track-record-ios-engineer-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent('set-timeline-filter', { detail: 'engineering' }));
+                    const target = document.getElementById('milestone-sharetrip-ios') || document.getElementById('tech-experience') || document.getElementById('timeline');
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#2563eb] dark:text-[#60a5fa] bg-[#eff6ff] dark:bg-[#1e293b] hover:bg-[#dbeafe] dark:hover:bg-[#2563eb]/20 transition-colors w-fit group cursor-pointer"
                 >
-                  <span>iOS Engineering Background</span>
+                  <span>iOS Engineer Experience</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
@@ -303,7 +312,16 @@ export const GooglePmPillarsSection: React.FC = () => {
               <div className="pt-2">
                 <a
                   href="#experience"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#2563eb] dark:text-[#60a5fa] bg-[#eff6ff] dark:bg-[#1e293b] hover:bg-[#dbeafe] dark:hover:bg-[#2563eb]/20 transition-colors w-fit group"
+                  id="track-record-leadership-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent('set-timeline-filter', { detail: 'pm' }));
+                    const target = document.getElementById('milestone-nexcent-pm') || document.getElementById('experience') || document.getElementById('timeline');
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#2563eb] dark:text-[#60a5fa] bg-[#eff6ff] dark:bg-[#1e293b] hover:bg-[#dbeafe] dark:hover:bg-[#2563eb]/20 transition-colors w-fit group cursor-pointer"
                 >
                   <span>0→1 Product Experience</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

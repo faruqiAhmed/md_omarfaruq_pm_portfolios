@@ -29,13 +29,33 @@ export const ExecutionAndRoadmapSection: React.FC<ExecutionAndRoadmapSectionProp
     <div className="space-y-6">
       {/* Edge Cases & Failure Handling */}
       {edgeCases && edgeCases.length > 0 && (
-        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 shadow-xs min-w-0 max-w-full">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
             <ShieldAlert className="w-4 h-4" />
             <span>Edge Cases & Exception Scenarios</span>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-3">
+            {edgeCases.map((ec, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2"
+              >
+                <div className="text-xs font-bold text-[#202124] dark:text-[#f1f3f4] leading-snug">
+                  {ec.feature ? <span className="text-[#1a73e8] dark:text-[#8ab4f8] mr-1.5 font-bold">[{ec.feature}]</span> : null}
+                  {ec.scenario}
+                </div>
+                <div className="text-xs text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed pt-1 border-t border-[#dadce0] dark:border-[#2d2f34]">
+                  <strong className="text-[#137333] dark:text-[#81c995] mr-1">Resolution:</strong>
+                  {ec.expectedBehavior || ec.solution}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>
@@ -61,13 +81,41 @@ export const ExecutionAndRoadmapSection: React.FC<ExecutionAndRoadmapSectionProp
 
       {/* Technical Architecture & Primary Risks */}
       {architectureRisks && architectureRisks.length > 0 && (
-        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 shadow-xs min-w-0 max-w-full">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
             <Cpu className="w-4 h-4" />
             <span>Technical Architecture & Engineering Risk Matrix</span>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-3">
+            {architectureRisks.map((ar, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-bold text-xs text-[#202124] dark:text-[#f1f3f4]">
+                    {ar.solution || ar.component}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 shrink-0">
+                    {ar.keyComponents || 'Architecture'}
+                  </span>
+                </div>
+                <div className="text-xs space-y-1 pt-1 border-t border-[#dadce0] dark:border-[#2d2f34]">
+                  <p className="text-[#c5221f] dark:text-[#f28b82]">
+                    <strong>Risk:</strong> {ar.primaryRisk || ar.risk}
+                  </p>
+                  <p className="text-[#137333] dark:text-[#81c995]">
+                    <strong>Mitigation:</strong> {ar.mitigation || 'Proactive architecture isolation'}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>
@@ -94,13 +142,36 @@ export const ExecutionAndRoadmapSection: React.FC<ExecutionAndRoadmapSectionProp
 
       {/* Go-to-Market Phased Rollout */}
       {goToMarketPhases && goToMarketPhases.length > 0 && (
-        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 shadow-xs min-w-0 max-w-full">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
             <Clock className="w-4 h-4" />
             <span>Go-To-Market & Staged Rollout Strategy</span>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-3">
+            {goToMarketPhases.map((gtm, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-bold text-xs text-[#202124] dark:text-[#f1f3f4]">
+                    {gtm.phase}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e8f0fe] dark:bg-[#1e2738] text-[#1a73e8] dark:text-[#8ab4f8] shrink-0">
+                    {gtm.timeline || gtm.audience}
+                  </span>
+                </div>
+                <p className="text-xs text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed pt-1 border-t border-[#dadce0] dark:border-[#2d2f34]">
+                  <strong className="text-[#202124] dark:text-[#f1f3f4]">Focus & Gate:</strong> {gtm.focus}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>
@@ -125,13 +196,34 @@ export const ExecutionAndRoadmapSection: React.FC<ExecutionAndRoadmapSectionProp
 
       {/* Six-Month Success Criteria */}
       {sixMonthSuccessCriteria && sixMonthSuccessCriteria.length > 0 && (
-        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 shadow-xs min-w-0 max-w-full">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#137333] dark:text-[#81c995]">
             <Award className="w-4 h-4" />
             <span>6-Month Post-Launch Success Criteria</span>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-3">
+            {sixMonthSuccessCriteria.map((sc, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] flex items-center justify-between gap-3"
+              >
+                <div>
+                  <p className="text-xs font-bold text-[#202124] dark:text-[#f1f3f4]">{sc.metric}</p>
+                  <span className="text-[11px] text-[#5f6368] dark:text-[#9aa0a6]">Baseline: {sc.current || 'Current'}</span>
+                </div>
+                <div className="text-right shrink-0">
+                  <span className="text-xs font-extrabold text-[#137333] dark:text-[#81c995] bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    {sc.target}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>

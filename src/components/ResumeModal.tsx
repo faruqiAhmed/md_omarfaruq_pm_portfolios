@@ -159,7 +159,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const handleDownloadMarkdown = () => {
     const markdownResume = `# MD OMAR FARUQ
 Product Manager | Technical Product Management
-Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://www.linkedin.com/in/omarfaruqofficial/ | https://github.com/faruqiAhmed
+Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | https://www.linkedin.com/in/omarfaruqofficial/ | https://github.com/faruqiAhmed
 
 ## SUMMARY
 Product Manager with 1+ years of dedicated product management experience and 4+ years of hands-on iOS engineering experience building and shipping mobile products across fintech, social, and on-demand mobility. Founded and scaled a software company from the ground up, defining business requirements, driving cross-functional teams, and making data-informed trade-offs to take products from concept to launch. Hands-on technical depth enables fast, credible collaboration with engineering on scope, feasibility, and delivery.
@@ -225,7 +225,7 @@ B.Sc. in Computer Science and Engineering — City University, Dhaka, Bangladesh
   const handleCopyText = () => {
     const textResume = `MD OMAR FARUQ
 Product Manager | Technical Product Management
-Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | linkedin.com/in/omarfaruqofficial | github.com/faruqiAhmed
+Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | linkedin.com/in/omarfaruqofficial | github.com/faruqiAhmed
 
 SUMMARY
 Product Manager with 1+ years of dedicated product management experience and 4+ years of hands-on iOS engineering experience building and shipping mobile products across fintech, social, and on-demand mobility. Founded and scaled a software company from the ground up, defining business requirements, driving cross-functional teams, and making data-informed trade-offs to take products from concept to launch. Hands-on technical depth enables fast, credible collaboration with engineering on scope, feasibility, and delivery.
@@ -288,6 +288,20 @@ RECOGNITION
           </div>
 
           <div className="flex items-center flex-wrap gap-1.5 sm:gap-2">
+            {/* Live Portfolio / Web Resume Link */}
+            <a
+              id="resume-live-portfolio-btn"
+              href={PERSONAL_INFO.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              title="Open Live Portfolio & Web Resume (https://omarfaruqme.vercel.app/)"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#8ab4f8]" />
+              <span className="hidden sm:inline">omarfaruqme.vercel.app</span>
+              <span className="sm:hidden">Web</span>
+            </a>
+
             {/* Direct Save as PDF (Vector jsPDF) */}
             <button
               id="resume-save-pdf-action"
@@ -381,6 +395,11 @@ RECOGNITION
               <span>{PERSONAL_INFO.phone}</span>
               <span>•</span>
               <span>{PERSONAL_INFO.email}</span>
+              <span>•</span>
+              <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noopener noreferrer" className="text-[#1a73e8] dark:text-[#8ab4f8] font-semibold underline inline-flex items-center gap-1">
+                <span>omarfaruqme.vercel.app</span>
+                <ExternalLink className="w-3 h-3 no-print inline opacity-70" />
+              </a>
               <span>•</span>
               <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline">
                 linkedin.com/in/omarfaruqofficial
@@ -530,10 +549,28 @@ RECOGNITION
 
         {/* Modal Footer (hidden during print) */}
         <div className="no-print bg-slate-50 dark:bg-[#141518] px-4 sm:px-6 py-3.5 border-t border-slate-200 dark:border-[#2d2f34] flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-xs text-slate-500 dark:text-[#9aa0a6] text-center sm:text-left">
-            Industry standard executive resume. Click <strong>'Download Resume'</strong> to save a clean PDF copy.
-          </span>
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-[#9aa0a6] text-center sm:text-left flex-wrap">
+            <span>Executive Resume • Live Portfolio at</span>
+            <a
+              href={PERSONAL_INFO.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1a73e8] dark:text-[#8ab4f8] font-semibold hover:underline inline-flex items-center gap-1"
+            >
+              <span>omarfaruqme.vercel.app</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
           <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={PERSONAL_INFO.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-[#25272c] border border-slate-300 dark:border-[#35383f] text-slate-700 dark:text-[#e8eaed] hover:bg-slate-100 dark:hover:bg-[#2f3238] transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#1a73e8] dark:text-[#8ab4f8]" />
+              <span>Visit omarfaruqme.vercel.app</span>
+            </a>
             <button
               onClick={handleSavePdf}
               disabled={isGeneratingPdf}

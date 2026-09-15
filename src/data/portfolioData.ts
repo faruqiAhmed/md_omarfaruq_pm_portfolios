@@ -2,12 +2,15 @@ import { CaseStudy, CareerMilestone, SkillCategory, Certification, Article, Goog
 
 export const PERSONAL_INFO = {
   name: "MD Omar Faruq",
+  photoUrl: "/faruq.png",
   title: "Technical Product Manager & Product Strategist",
   roleArchetype: "Google Product Manager Archetype: Product Sense • Systems Architecture • Analytical Execution",
   googleMotto: "Focus on the user and all else will follow.",
   location: "Dhaka, Bangladesh",
   email: "faruqdeveloper@gmail.com",
   phone: "+880 1642-031736",
+  portfolio: "https://omarfaruqme.vercel.app/",
+  resumeUrl: "https://omarfaruqme.vercel.app/",
   github: "https://github.com/faruqiAhmed",
   linkedin: "https://www.linkedin.com/in/omarfaruqofficial/",
   summary: "Product Manager with 1+ years of dedicated product leadership experience and 4+ years of hands-on iOS engineering experience. I bridge the gap between customer problems, product strategy, and technical execution — turning ambiguous problems into structured PRDs, data-driven OKRs, prioritized roadmaps, and buildable product solutions across Fintech, On-Demand Mobility, and Multi-Product SaaS.",

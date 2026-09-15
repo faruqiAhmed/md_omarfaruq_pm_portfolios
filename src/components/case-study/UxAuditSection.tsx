@@ -20,7 +20,7 @@ export const UxAuditSection: React.FC<UxAuditSectionProps> = ({
   if (!hasContent) return null;
 
   return (
-    <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-6 shadow-xs">
+    <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-6 shadow-xs min-w-0 max-w-full">
       <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
         <AlertCircle className="w-4 h-4" />
         <span>UX Audit & Usability Heuristics Evaluation</span>
@@ -28,15 +28,43 @@ export const UxAuditSection: React.FC<UxAuditSectionProps> = ({
 
       {/* Nielsen's Usability Heuristics Table */}
       {heuristicsAudit && heuristicsAudit.length > 0 && (
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
+        <div className="space-y-3 min-w-0">
+          <div className="flex items-center justify-between flex-wrap gap-1">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#9aa0a6]">
               Jakob Nielsen's 10 Usability Heuristics Evaluation
             </h4>
             <span className="text-xs text-[#5f6368] dark:text-[#9aa0a6]">Scored 1 to 5</span>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout (sm:hidden) - Perfect readability with zero clipping */}
+          <div className="sm:hidden space-y-3">
+            {heuristicsAudit.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-bold text-xs text-[#202124] dark:text-[#f1f3f4] leading-snug">
+                    {item.heuristic}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 dark:bg-blue-950/60 text-[#1a73e8] dark:text-[#8ab4f8] border border-blue-200 dark:border-blue-900/40 shrink-0">
+                    {item.rating.includes('/') ? item.rating : `${item.rating}/5`}
+                  </span>
+                </div>
+                <div className="text-xs text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed">
+                  {item.keyWeakness || item.observation || (
+                    <span>
+                      {item.status && <strong className="text-[#202124] dark:text-[#f1f3f4] mr-1">{item.status}:</strong>}
+                      {item.recommendation}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View (hidden sm:block) */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>
@@ -70,11 +98,37 @@ export const UxAuditSection: React.FC<UxAuditSectionProps> = ({
 
       {/* Usability Issues Summary */}
       {usabilityIssuesSummary && usabilityIssuesSummary.length > 0 && (
-        <div className="space-y-3 pt-2">
+        <div className="space-y-3 pt-2 min-w-0">
           <h4 className="text-xs font-bold uppercase tracking-wider text-[#5f6368] dark:text-[#9aa0a6]">
             Summary of Usability Findings
           </h4>
-          <div className="overflow-x-auto">
+
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-2.5">
+            {usabilityIssuesSummary.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] flex items-start justify-between gap-3"
+              >
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold text-[#202124] dark:text-[#f1f3f4] leading-snug">{item.issue}</p>
+                  <span className="text-[11px] text-[#5f6368] dark:text-[#9aa0a6] block">Frequency: {item.frequency}</span>
+                </div>
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${
+                  item.severity === 'High'
+                    ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/50 dark:text-rose-300'
+                    : item.severity === 'Medium'
+                    ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300'
+                    : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300'
+                }`}>
+                  {item.severity}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table */}
+          <div className="hidden sm:block overflow-x-auto w-full max-w-full">
             <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
               <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                 <tr>

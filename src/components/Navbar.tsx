@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import faruqPortrait from '../assets/images/faruq.png';
 import { Menu, X, Sun, Moon, Calendar } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -42,12 +43,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume, onOpenContact, onO
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
-        {/* Brand identity: Clean, confident typography */}
+        {/* Brand identity: Clean, confident typography with avatar */}
         <a
           href="#"
           id="nav-brand-link"
           className="flex items-center group focus:outline-hidden"
         >
+          <img
+            src={faruqPortrait}
+            alt={PERSONAL_INFO.name}
+            referrerPolicy="no-referrer"
+            className="w-8 h-8 rounded-full object-cover object-top border border-neutral-300 dark:border-neutral-700 mr-2.5 shadow-2xs group-hover:scale-105 transition-transform"
+          />
           <span className="font-semibold text-base sm:text-lg text-neutral-900 dark:text-neutral-100 tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
             {PERSONAL_INFO.name}
           </span>

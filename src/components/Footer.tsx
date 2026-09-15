@@ -83,7 +83,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume, onOpenContact, onO
         {/* Bottom copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#80868b]">
           <p>© {new Date().getFullYear()} {PERSONAL_INFO.name}. Development Nexcent Tech</p>
-          <p className="flex items-center gap-4">
+          <p className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-end">
+            <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noreferrer" className="hover:text-white transition-colors text-[#8ab4f8]">
+              omarfaruqme.vercel.app
+            </a>
+            <span>•</span>
             <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
               LinkedIn
             </a>

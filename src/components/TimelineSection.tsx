@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CAREER_MILESTONES } from '../data/portfolioData';
 import { 
   Briefcase, 
@@ -18,6 +18,33 @@ import {
 
 export const TimelineSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'pm' | 'engineering' | 'education-recognition'>('all');
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash === '#tech-experience' || hash === '#ios-engineering') {
+        setActiveFilter('engineering');
+      } else if (hash === '#experience' || hash === '#pm-experience') {
+        setActiveFilter('pm');
+      }
+    };
+
+    const handleCustomFilter = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail && ['all', 'pm', 'engineering', 'education-recognition'].includes(customEvent.detail)) {
+        setActiveFilter(customEvent.detail as any);
+      }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    window.addEventListener('set-timeline-filter', handleCustomFilter);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHash);
+      window.removeEventListener('set-timeline-filter', handleCustomFilter);
+    };
+  }, []);
 
   const filterMilestones = CAREER_MILESTONES.filter((m) => {
     if (activeFilter === 'all') return true;
@@ -94,7 +121,11 @@ export const TimelineSection: React.FC = () => {
   };
 
   return (
-    <section id="timeline" className="py-16 md:py-24 bg-[#f8fafd] dark:bg-[#111215] border-t border-[#dadce0] dark:border-[#2d2f34] transition-colors duration-200">
+    <section id="timeline" className="relative py-16 md:py-24 bg-[#f8fafd] dark:bg-[#111215] border-t border-[#dadce0] dark:border-[#2d2f34] transition-colors duration-200">
+      {/* Anchor targets for hash navigation */}
+      <div id="tech-experience" className="absolute -top-20 pointer-events-none" aria-hidden="true" />
+      <div id="experience" className="absolute -top-20 pointer-events-none" aria-hidden="true" />
+      <div id="ios-engineering" className="absolute -top-20 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

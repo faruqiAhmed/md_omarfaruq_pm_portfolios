@@ -83,71 +83,70 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
   return (
     <div
       id="case-study-modal-backdrop"
-      className="fixed inset-0 z-50 overflow-y-auto bg-[#202124]/65 dark:bg-black/75 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 lg:p-6 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden bg-[#202124]/65 dark:bg-black/75 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 lg:p-6 animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
         id="case-study-modal-card"
-        className="relative w-full max-w-5xl bg-white dark:bg-[#18191c] rounded-2xl shadow-2xl border border-[#dadce0] dark:border-[#2d2f34] overflow-hidden my-4 sm:my-6 text-[#202124] dark:text-[#f1f3f4]"
+        className="relative w-full max-w-[calc(100vw-16px)] sm:max-w-5xl min-w-0 bg-white dark:bg-[#18191c] rounded-2xl shadow-2xl border border-[#dadce0] dark:border-[#2d2f34] overflow-hidden my-auto sm:my-6 text-[#202124] dark:text-[#f1f3f4] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Google Workspace / Docs Top Bar */}
-        <div className="sticky top-0 z-20 bg-white dark:bg-[#18191c] border-b border-[#dadce0] dark:border-[#2d2f34] px-4 sm:px-6 py-3 flex items-center justify-between shadow-2xs">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#e8f0fe] dark:bg-[#1e2738] border border-[#d2e3fc] dark:border-[#2a3852] flex items-center justify-center text-[#1a73e8] dark:text-[#8ab4f8]">
-              <FileText className="w-5 h-5" />
+        <div className="sticky top-0 z-20 bg-white dark:bg-[#18191c] border-b border-[#dadce0] dark:border-[#2d2f34] px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 shadow-2xs min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+            <div className="w-8 h-8 rounded-lg bg-[#e8f0fe] dark:bg-[#1e2738] border border-[#d2e3fc] dark:border-[#2a3852] flex items-center justify-center text-[#1a73e8] dark:text-[#8ab4f8] shrink-0">
+              <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-sm text-[#202124] dark:text-[#f1f3f4] truncate max-w-[200px] sm:max-w-md">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="font-bold text-xs sm:text-sm text-[#202124] dark:text-[#f1f3f4] truncate">
                   {caseStudy.prdMetadata?.docId ? `[${caseStudy.prdMetadata.docId}] ` : ''}{caseStudy.title}
                 </span>
-                <span className="hidden sm:inline-flex text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                <span className="hidden md:inline-flex text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 shrink-0">
                   {caseStudy.prdMetadata?.status || 'Active PRD'}
                 </span>
               </div>
-              <span className="text-[11px] text-[#5f6368] dark:text-[#9aa0a6]">
+              <span className="text-[10px] sm:text-[11px] text-[#5f6368] dark:text-[#9aa0a6] truncate block">
                 PRD Document • Owner: {caseStudy.prdMetadata?.docOwner || 'MD Omar Faruq'}
               </span>
             </div>
           </div>
 
           {/* Right Controls: View Switcher & Close */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {/* View Mode Toggle */}
-            <div className="flex items-center p-1 bg-[#f1f3f4] dark:bg-[#202227] rounded-full text-xs font-semibold">
+            <div className="flex items-center p-0.5 sm:p-1 bg-[#f1f3f4] dark:bg-[#202227] rounded-full text-xs font-semibold">
               <button
                 type="button"
                 onClick={() => setViewMode('prd')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full transition-all cursor-pointer text-xs ${
                   viewMode === 'prd'
-                    ? 'bg-white dark:bg-[#2d3037] text-[#1a73e8] dark:text-[#8ab4f8] shadow-2xs'
+                    ? 'bg-white dark:bg-[#2d3037] text-[#1a73e8] dark:text-[#8ab4f8] shadow-2xs font-bold'
                     : 'text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white'
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span className="hidden xs:inline sm:inline">PRD Spec</span>
-                <span className="xs:hidden sm:hidden">PRD</span>
+                <span>PRD</span>
               </button>
               <button
                 type="button"
                 onClick={() => setViewMode('exec')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full transition-all cursor-pointer text-xs ${
                   viewMode === 'exec'
-                    ? 'bg-white dark:bg-[#2d3037] text-[#1a73e8] dark:text-[#8ab4f8] shadow-2xs'
+                    ? 'bg-white dark:bg-[#2d3037] text-[#1a73e8] dark:text-[#8ab4f8] shadow-2xs font-bold'
                     : 'text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white'
                 }`}
               >
                 <Layers className="w-3.5 h-3.5" />
-                <span className="hidden xs:inline sm:inline">Product Case Study</span>
-                <span className="xs:hidden sm:hidden">Case Study</span>
+                <span className="hidden sm:inline">Case Study</span>
+                <span className="sm:hidden">Case</span>
               </button>
             </div>
 
             <button
               onClick={handleCopySummary}
               title="Copy PRD Summary"
-              className="p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer"
+              className="hidden xs:flex p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer"
             >
               {copiedLink ? <Check className="w-4 h-4 text-[#34a853] dark:text-[#81c995]" /> : <Copy className="w-4 h-4" />}
             </button>
@@ -161,7 +160,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
                 }
               }}
               title="Print PRD Document"
-              className="p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer"
+              className="hidden sm:flex p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer"
             >
               <Printer className="w-4 h-4" />
             </button>
@@ -169,7 +168,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
             <button
               id="close-case-study-modal"
               onClick={onClose}
-              className="p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer"
+              className="p-1.5 sm:p-2 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] transition-colors cursor-pointer shrink-0"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -178,7 +177,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="p-4 sm:p-8 space-y-8 max-h-[82vh] overflow-y-auto bg-[#fafafa] dark:bg-[#121316]">
+        <div className="p-3 sm:p-8 space-y-6 sm:space-y-8 max-h-[78vh] sm:max-h-[82vh] overflow-y-auto overflow-x-hidden min-w-0 max-w-full bg-[#fafafa] dark:bg-[#121316] flex-1">
           
           {/* PRD VIEW MODE */}
           {viewMode === 'prd' ? (
@@ -521,11 +520,11 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
                 <div className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="flex items-center gap-2 text-[#3c4043] dark:text-[#bdc1c6]">
                     <Users className="w-4 h-4 text-[#1a73e8] dark:text-[#8ab4f8]" />
-                    <span><strong>Author / PM:</strong> {caseStudy.prdMetadata?.docOwner || caseStudy.role}</span>
+                    <span><strong>Created by:</strong> {caseStudy.prdMetadata?.docOwner || caseStudy.role}</span>
                   </div>
                   <div className="flex items-center gap-2 text-[#3c4043] dark:text-[#bdc1c6]">
                     <Building2 className="w-4 h-4 text-[#34a853] dark:text-[#81c995]" />
-                    <span><strong>Organization:</strong> {caseStudy.clientOrCompany}</span>
+                    <span><strong>Product:</strong> {caseStudy.clientOrCompany}</span>
                   </div>
                   <div className="flex items-center gap-2 text-[#3c4043] dark:text-[#bdc1c6]">
                     <Calendar className="w-4 h-4 text-[#f9ab00] dark:text-[#fdd663]" />
@@ -767,13 +766,38 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
 
               {/* User Journey Map & Opportunity Space (if available) */}
               {caseStudy.userJourneyMap && caseStudy.userJourneyMap.length > 0 && (
-                <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-5 shadow-xs">
+                <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 sm:space-y-5 shadow-xs">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
                     <Compass className="w-4 h-4" />
                     <span>End-to-End User Journey Map & Product Opportunities</span>
                   </div>
 
-                  <div className="overflow-x-auto">
+                  {/* Mobile Journey Cards */}
+                  <div className="sm:hidden space-y-3">
+                    {caseStudy.userJourneyMap.map((step, idx) => (
+                      <div key={idx} className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider">
+                            {step.stage}
+                          </span>
+                        </div>
+                        <div className="text-xs space-y-1.5">
+                          <p className="text-[#202124] dark:text-[#f1f3f4]">
+                            <strong>Action:</strong> {step.userAction}
+                          </p>
+                          <p className="text-[#c5221f] dark:text-[#f28b82]">
+                            <strong>Pain Point:</strong> {step.painPoint}
+                          </p>
+                          <p className="text-[#137333] dark:text-[#81c995]">
+                            <strong>Opportunity:</strong> {step.opportunity}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop Journey Table */}
+                  <div className="hidden sm:block overflow-x-auto w-full max-w-full">
                     <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
                       <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                         <tr>
@@ -800,18 +824,51 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
 
               {/* Section 8: Feature Prioritization RICE Framework (if available) */}
               {caseStudy.ricePrioritization && caseStudy.ricePrioritization.length > 0 && (
-                <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-6 sm:p-8 space-y-5 shadow-xs">
+                <div className="bg-white dark:bg-[#18191c] rounded-xl border border-[#dadce0] dark:border-[#2d2f34] p-4 sm:p-8 space-y-4 sm:space-y-5 shadow-xs">
                   <div className="flex items-center justify-between flex-wrap gap-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8]">
                       <Target className="w-4 h-4" />
                       <span>Feature Prioritization (RICE Framework)</span>
                     </div>
-                    <span className="font-mono text-xs text-[#5f6368] dark:text-[#9aa0a6]">
+                    <span className="font-mono text-[11px] sm:text-xs text-[#5f6368] dark:text-[#9aa0a6]">
                       Formula: (Reach × Impact × Confidence) ÷ Effort
                     </span>
                   </div>
 
-                  <div className="overflow-x-auto">
+                  {/* Mobile RICE Cards */}
+                  <div className="sm:hidden space-y-3">
+                    {caseStudy.ricePrioritization.map((row, idx) => (
+                      <div key={idx} className="p-3.5 rounded-xl bg-[#f8fafd] dark:bg-[#1f2025] border border-[#dadce0] dark:border-[#2d2f34] space-y-2">
+                        <div className="flex items-start justify-between gap-2">
+                          <span className="font-bold text-xs text-[#202124] dark:text-[#f1f3f4] leading-snug">
+                            {row.feature}
+                          </span>
+                          <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${
+                            row.priority.startsWith('P1')
+                              ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'
+                              : row.priority.startsWith('P2')
+                              ? 'bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800'
+                              : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700'
+                          }`}>
+                            {row.priority}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-[11px] text-[#5f6368] dark:text-[#9aa0a6] pt-1 border-t border-[#dadce0] dark:border-[#2d2f34]">
+                          <div>Reach: <strong className="text-[#202124] dark:text-[#f1f3f4]">{row.reach}</strong></div>
+                          <div>Impact: <strong className="text-[#202124] dark:text-[#f1f3f4]">{row.impact}</strong></div>
+                          <div>Confidence: <strong className="text-[#202124] dark:text-[#f1f3f4]">{row.confidence}</strong></div>
+                          <div>Effort: <strong className="text-[#202124] dark:text-[#f1f3f4]">{row.effort}</strong></div>
+                        </div>
+                        <div className="flex items-center justify-between pt-1 border-t border-[#dadce0] dark:border-[#2d2f34] text-xs font-bold">
+                          <span className="text-[#5f6368] dark:text-[#9aa0a6]">RICE Score:</span>
+                          <span className="text-[#1a73e8] dark:text-[#8ab4f8] text-sm font-extrabold">{row.riceScore}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop RICE Table */}
+                  <div className="hidden sm:block overflow-x-auto w-full max-w-full">
                     <table className="w-full text-xs text-left border border-[#dadce0] dark:border-[#2d2f34] rounded-xl overflow-hidden">
                       <thead className="bg-[#f1f3f4] dark:bg-[#202227] text-[#5f6368] dark:text-[#9aa0a6] uppercase font-bold text-[11px]">
                         <tr>
@@ -1010,23 +1067,36 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, initi
         </div>
 
         {/* Modal Footer Bar */}
-        <div className="sticky bottom-0 bg-[#f8fafd] dark:bg-[#141518] px-4 sm:px-6 py-3 border-t border-[#dadce0] dark:border-[#2d2f34] flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
-            <FileText className="w-4 h-4 text-[#1a73e8] dark:text-[#8ab4f8]" />
-            <span>Format: {viewMode === 'prd' ? 'PRD Specification' : 'Product Case Study'}</span>
+        <div className="sticky bottom-0 z-20 bg-[#f8fafd] dark:bg-[#141518] px-3 sm:px-6 py-2.5 sm:py-3 border-t border-[#dadce0] dark:border-[#2d2f34] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 shadow-xs">
+          <div className="flex items-center justify-between sm:justify-start gap-2 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
+            <div className="flex items-center gap-1.5 truncate">
+              <FileText className="w-3.5 h-3.5 text-[#1a73e8] dark:text-[#8ab4f8] shrink-0" />
+              <span className="truncate">
+                Format: <strong className="font-semibold text-[#202124] dark:text-[#f1f3f4]">{viewMode === 'prd' ? 'PRD Specification' : 'Product Case Study'}</strong>
+              </span>
+            </div>
+            {/* Quick toggle pill on mobile */}
+            <button
+              type="button"
+              onClick={() => setViewMode(viewMode === 'prd' ? 'exec' : 'prd')}
+              className="sm:hidden inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white dark:bg-[#202227] border border-[#dadce0] dark:border-[#35383f] text-[#1a73e8] dark:text-[#8ab4f8] shrink-0 cursor-pointer"
+            >
+              <span>Switch to {viewMode === 'prd' ? 'Case Study' : 'PRD'}</span>
+            </button>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-end">
             <button
+              type="button"
               onClick={() => setViewMode(viewMode === 'prd' ? 'exec' : 'prd')}
-              className="sm:hidden px-3 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-[#202227] border border-[#dadce0] dark:border-[#35383f] text-[#1a73e8] dark:text-[#8ab4f8] cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-[#202227] border border-[#dadce0] dark:border-[#35383f] text-[#1a73e8] dark:text-[#8ab4f8] hover:bg-[#f1f3f4] dark:hover:bg-[#2a2d34] transition-colors cursor-pointer"
             >
-              Switch to {viewMode === 'prd' ? 'Case Study' : 'PRD'}
+              <span>Switch to {viewMode === 'prd' ? 'Case Study' : 'PRD'}</span>
             </button>
             <button
               id="modal-bottom-close-btn"
               onClick={onClose}
-              className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-[#1a73e8] dark:bg-[#8ab4f8] text-white dark:text-[#202124] hover:bg-[#1557b0] dark:hover:bg-[#aecbfa] transition-colors cursor-pointer shadow-2xs"
+              className="w-full sm:w-auto px-5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-[#1a73e8] dark:bg-[#8ab4f8] text-white dark:text-[#202124] hover:bg-[#1557b0] dark:hover:bg-[#aecbfa] transition-colors cursor-pointer shadow-2xs text-center"
             >
               Done Reading
             </button>

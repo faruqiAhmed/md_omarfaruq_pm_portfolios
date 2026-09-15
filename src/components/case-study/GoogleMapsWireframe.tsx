@@ -80,45 +80,45 @@ export const GoogleMapsWireframe: React.FC = () => {
   return (
     <div className="space-y-4">
       {/* Wireframe Navigation Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#dadce0] dark:border-[#2d2f34] pb-3">
-        <div className="flex items-center gap-1.5 p-1 bg-[#f1f3f4] dark:bg-[#202227] rounded-xl text-xs font-semibold">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b border-[#dadce0] dark:border-[#2d2f34] pb-3">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 p-1 bg-[#f1f3f4] dark:bg-[#202227] rounded-xl text-xs font-semibold max-w-full">
           <button
             type="button"
             onClick={() => { setActiveTab('reviews'); setReportSubmitted(false); }}
-            className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 text-xs ${
               activeTab === 'reviews'
                 ? 'bg-white dark:bg-[#18191c] text-[#1a73e8] dark:text-[#8ab4f8] shadow-xs'
                 : 'text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white'
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>1. Verified Visit Reviews</span>
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+            <span>1. Verified Reviews</span>
           </button>
 
           <button
             type="button"
             onClick={() => { setActiveTab('parking'); setReportSubmitted(false); }}
-            className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 text-xs ${
               activeTab === 'parking'
                 ? 'bg-white dark:bg-[#18191c] text-[#1a73e8] dark:text-[#8ab4f8] shadow-xs'
                 : 'text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white'
             }`}
           >
-            <Car className="w-3.5 h-3.5" />
-            <span>2. Smart Parking Card</span>
+            <Car className="w-3.5 h-3.5 shrink-0" />
+            <span>2. Smart Parking</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('report')}
-            className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 text-xs ${
               activeTab === 'report'
                 ? 'bg-white dark:bg-[#18191c] text-[#1a73e8] dark:text-[#8ab4f8] shadow-xs'
                 : 'text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#202124] dark:hover:text-white'
             }`}
           >
-            <Flag className="w-3.5 h-3.5" />
-            <span>3. One-Tap Quick Report</span>
+            <Flag className="w-3.5 h-3.5 shrink-0" />
+            <span>3. Quick Report</span>
           </button>
         </div>
 
@@ -131,8 +131,8 @@ export const GoogleMapsWireframe: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         {/* Device Canvas Frame */}
-        <div className="lg:col-span-6 flex justify-center">
-          <div className="w-full max-w-[360px] rounded-3xl border-4 border-[#3c4043] dark:border-[#5f6368] bg-[#f8fafd] dark:bg-[#121316] p-4 shadow-xl space-y-3.5 text-xs">
+        <div className="lg:col-span-6 flex justify-center w-full min-w-0">
+          <div className="w-full max-w-[320px] sm:max-w-[360px] rounded-3xl border-4 border-[#3c4043] dark:border-[#5f6368] bg-[#f8fafd] dark:bg-[#121316] p-4 shadow-xl space-y-3.5 text-xs min-w-0">
             
             {/* Phone Top Status */}
             <div className="flex justify-between items-center px-1 text-[10px] text-[#5f6368] dark:text-[#9aa0a6] pb-1 border-b border-[#dadce0] dark:border-[#2d2f34]">

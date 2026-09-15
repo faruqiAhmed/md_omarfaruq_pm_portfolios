@@ -43,26 +43,48 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenScheduleCa
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        const existing = JSON.parse(localStorage.getItem('pm_portfolio_inquiries') || '[]');
-        const newEntry = {
-          ...formData,
-          id: Date.now().toString(),
-          timestamp: new Date().toISOString()
-        };
-        localStorage.setItem('pm_portfolio_inquiries', JSON.stringify([newEntry, ...existing]));
-      } catch (err) {
-        console.error('Storage error', err);
-      }
+    // Direct email dispatch to faruqdeveloper@gmail.com
+    try {
+      await fetch('https://formsubmit.co/ajax/faruqdeveloper@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[Portfolio Inquiry] ${formData.inquiryType} from ${formData.name}`,
+          _replyto: formData.email,
+          host: 'faruqdeveloper@gmail.com',
+          sender_name: formData.name,
+          sender_email: formData.email,
+          inquiry_type: formData.inquiryType,
+          timeline: formData.timeline,
+          message: formData.message,
+          timestamp: new Date().toLocaleString()
+        })
+      });
+    } catch (err) {
+      console.warn('Inquiry dispatch note:', err);
+    }
 
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 600);
+    try {
+      const existing = JSON.parse(localStorage.getItem('pm_portfolio_inquiries') || '[]');
+      const newEntry = {
+        ...formData,
+        id: Date.now().toString(),
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem('pm_portfolio_inquiries', JSON.stringify([newEntry, ...existing]));
+    } catch (err) {
+      console.error('Storage error', err);
+    }
+
+    setIsSubmitting(false);
+    setSubmitted(true);
   };
 
   const resetForm = () => {
@@ -317,13 +339,41 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenScheduleCa
                     Inquiry Transmitted Successfully!
                   </h3>
                   <p className="text-sm text-[#4b5563] dark:text-[#9ca3af] max-w-md mx-auto leading-relaxed">
-                    Thank you, <strong>{formData.name}</strong>. Your message regarding <strong>{formData.inquiryType}</strong> has been received. I will review and reply promptly.
+                    Thank you, <strong>{formData.name}</strong>. Your message regarding <strong>{formData.inquiryType}</strong> has been logged.
                   </p>
-                  <div className="pt-3">
+                  <div className="p-3 rounded-xl bg-[#e8f0fe] dark:bg-[#1a2638] border border-[#d2e3fc] dark:border-[#2b3e5c] max-w-md mx-auto text-left flex items-start gap-2.5">
+                    <Mail className="w-4 h-4 text-[#1a73e8] dark:text-[#8ab4f8] shrink-0 mt-0.5" />
+                    <div className="text-xs">
+                      <p className="font-semibold text-[#1a73e8] dark:text-[#8ab4f8]">
+                        Delivered to: <span className="font-mono">faruqdeveloper@gmail.com</span>
+                      </p>
+                      <p className="text-[#3c4043] dark:text-[#bdc1c6] text-[11px] mt-0.5">
+                        Omar monitors this inbox directly and will reply to <strong>{formData.email}</strong> promptly.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-3 flex flex-wrap items-center justify-center gap-2">
+                    <a
+                      href={`mailto:faruqdeveloper@gmail.com?subject=${encodeURIComponent(`[Portfolio Inquiry] ${formData.inquiryType} - ${formData.name}`)}&body=${encodeURIComponent(`Hi Omar,\n\nName: ${formData.name}\nEmail: ${formData.email}\nInquiry: ${formData.inquiryType}\nTimeline: ${formData.timeline}\n\nMessage:\n${formData.message}`)}`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#1a73e8] hover:bg-[#1557b0] transition-colors cursor-pointer"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Send Direct Email Copy</span>
+                    </a>
+                    {onOpenScheduleCall && (
+                      <button
+                        type="button"
+                        onClick={onOpenScheduleCall}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] bg-[#e8f0fe] dark:bg-[#1e2738] hover:bg-[#d2e3fc] transition-colors cursor-pointer"
+                      >
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>Add Call to Google Calendar</span>
+                      </button>
+                    )}
                     <button
                       id="reset-contact-form-btn"
                       onClick={resetForm}
-                      className="px-6 py-2.5 rounded-xl text-sm font-semibold text-[#111827] dark:text-[#f3f4f6] bg-[#f1f3f4] dark:bg-[#25272c] hover:bg-[#e8eaed] dark:hover:bg-[#30333a] border border-[#dadce0] dark:border-[#35383f] transition-all cursor-pointer"
+                      className="px-4 py-2 rounded-xl text-xs font-semibold text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#111827] dark:hover:text-white transition-all cursor-pointer"
                     >
                       Send Another Message
                     </button>

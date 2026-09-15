@@ -40,28 +40,44 @@ export const generateResumePdf = () => {
 
   // 3. Contact & Links Line
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.8);
+  doc.setFontSize(8.2);
   doc.setTextColor(slate600[0], slate600[1], slate600[2]);
   
   const contactPrefix = `${PERSONAL_INFO.location}  •  ${PERSONAL_INFO.phone}  •  ${PERSONAL_INFO.email}  •  `;
   doc.text(contactPrefix, margin, y);
   const prefixWidth = doc.getTextWidth(contactPrefix);
 
-  const linkedinText = "linkedin.com/in/omarfaruqofficial";
+  // Portfolio link: omarfaruqme.vercel.app
+  const portfolioText = "omarfaruqme.vercel.app";
   doc.setTextColor(slate900[0], slate900[1], slate900[2]);
-  doc.text(linkedinText, margin + prefixWidth, y);
-  const linkedinWidth = doc.getTextWidth(linkedinText);
+  doc.text(portfolioText, margin + prefixWidth, y);
+  const portfolioWidth = doc.getTextWidth(portfolioText);
   doc.setDrawColor(slate900[0], slate900[1], slate900[2]);
   doc.setLineWidth(0.2);
-  doc.line(margin + prefixWidth, y + 0.5, margin + prefixWidth + linkedinWidth, y + 0.5);
-  doc.link(margin + prefixWidth, y - 3, linkedinWidth, 4, { url: PERSONAL_INFO.linkedin });
+  doc.line(margin + prefixWidth, y + 0.5, margin + prefixWidth + portfolioWidth, y + 0.5);
+  doc.link(margin + prefixWidth, y - 3, portfolioWidth, 4, { url: PERSONAL_INFO.portfolio || "https://omarfaruqme.vercel.app/" });
 
-  const bulletMid = "  •  ";
+  const bullet1 = "  •  ";
   doc.setTextColor(slate600[0], slate600[1], slate600[2]);
-  doc.text(bulletMid, margin + prefixWidth + linkedinWidth, y);
-  const bulletMidWidth = doc.getTextWidth(bulletMid);
+  const bullet1X = margin + prefixWidth + portfolioWidth;
+  doc.text(bullet1, bullet1X, y);
+  const bullet1Width = doc.getTextWidth(bullet1);
 
-  const githubX = margin + prefixWidth + linkedinWidth + bulletMidWidth;
+  const linkedinX = bullet1X + bullet1Width;
+  const linkedinText = "linkedin.com/in/omarfaruqofficial";
+  doc.setTextColor(slate900[0], slate900[1], slate900[2]);
+  doc.text(linkedinText, linkedinX, y);
+  const linkedinWidth = doc.getTextWidth(linkedinText);
+  doc.line(linkedinX, y + 0.5, linkedinX + linkedinWidth, y + 0.5);
+  doc.link(linkedinX, y - 3, linkedinWidth, 4, { url: PERSONAL_INFO.linkedin });
+
+  const bullet2 = "  •  ";
+  doc.setTextColor(slate600[0], slate600[1], slate600[2]);
+  const bullet2X = linkedinX + linkedinWidth;
+  doc.text(bullet2, bullet2X, y);
+  const bullet2Width = doc.getTextWidth(bullet2);
+
+  const githubX = bullet2X + bullet2Width;
   const githubText = "github.com/faruqiAhmed";
   doc.setTextColor(slate900[0], slate900[1], slate900[2]);
   doc.text(githubText, githubX, y);
