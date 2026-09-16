@@ -38,59 +38,86 @@ export const generateResumePdf = () => {
   doc.text("Product Manager | Technical Product Management", margin, y);
   y += 5.5;
 
-  // 3. Contact & Links Line
+  // 3. Contact & Links Lines (Organized in two balanced, readable lines that never overflow margins)
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.2);
-  doc.setTextColor(slate600[0], slate600[1], slate600[2]);
+  doc.setFontSize(8.3);
   
-  const contactPrefix = `${PERSONAL_INFO.location}  •  ${PERSONAL_INFO.phone}  •  ${PERSONAL_INFO.email}  •  `;
-  doc.text(contactPrefix, margin, y);
-  const prefixWidth = doc.getTextWidth(contactPrefix);
+  // Line 1: Location • Phone • Email
+  let curX = margin;
+  const locText = PERSONAL_INFO.location;
+  doc.setTextColor(slate600[0], slate600[1], slate600[2]);
+  doc.text(locText, curX, y);
+  curX += doc.getTextWidth(locText);
 
-  // Portfolio link: omarfaruqme.vercel.app
+  const dot1 = "   •   ";
+  doc.text(dot1, curX, y);
+  curX += doc.getTextWidth(dot1);
+
+  const phoneText = PERSONAL_INFO.phone;
+  doc.setTextColor(slate700[0], slate700[1], slate700[2]);
+  doc.text(phoneText, curX, y);
+  const phoneWidth = doc.getTextWidth(phoneText);
+  doc.link(curX, y - 3, phoneWidth, 4, { url: `tel:${phoneText.replace(/\s+/g, '')}` });
+  curX += phoneWidth;
+
+  const dot2 = "   •   ";
+  doc.setTextColor(slate600[0], slate600[1], slate600[2]);
+  doc.text(dot2, curX, y);
+  curX += doc.getTextWidth(dot2);
+
+  const emailText = PERSONAL_INFO.email;
+  doc.setTextColor(slate700[0], slate700[1], slate700[2]);
+  doc.text(emailText, curX, y);
+  const emailWidth = doc.getTextWidth(emailText);
+  doc.link(curX, y - 3, emailWidth, 4, { url: `mailto:${emailText}` });
+
+  y += 4.2;
+
+  // Line 2: Portfolio • LinkedIn • GitHub (Cleanly bounded within page width, fully clickable)
+  curX = margin;
+
   const portfolioText = "omarfaruqme.vercel.app";
   doc.setTextColor(slate900[0], slate900[1], slate900[2]);
-  doc.text(portfolioText, margin + prefixWidth, y);
+  doc.text(portfolioText, curX, y);
   const portfolioWidth = doc.getTextWidth(portfolioText);
   doc.setDrawColor(slate900[0], slate900[1], slate900[2]);
   doc.setLineWidth(0.2);
-  doc.line(margin + prefixWidth, y + 0.5, margin + prefixWidth + portfolioWidth, y + 0.5);
-  doc.link(margin + prefixWidth, y - 3, portfolioWidth, 4, { url: PERSONAL_INFO.portfolio || "https://omarfaruqme.vercel.app/" });
+  doc.line(curX, y + 0.5, curX + portfolioWidth, y + 0.5);
+  doc.link(curX, y - 3, portfolioWidth, 4, { url: PERSONAL_INFO.portfolio || "https://omarfaruqme.vercel.app/" });
+  curX += portfolioWidth;
 
-  const bullet1 = "  •  ";
+  const linkDot1 = "   •   ";
   doc.setTextColor(slate600[0], slate600[1], slate600[2]);
-  const bullet1X = margin + prefixWidth + portfolioWidth;
-  doc.text(bullet1, bullet1X, y);
-  const bullet1Width = doc.getTextWidth(bullet1);
+  doc.text(linkDot1, curX, y);
+  curX += doc.getTextWidth(linkDot1);
 
-  const linkedinX = bullet1X + bullet1Width;
   const linkedinText = "linkedin.com/in/omarfaruqofficial";
   doc.setTextColor(slate900[0], slate900[1], slate900[2]);
-  doc.text(linkedinText, linkedinX, y);
+  doc.text(linkedinText, curX, y);
   const linkedinWidth = doc.getTextWidth(linkedinText);
-  doc.line(linkedinX, y + 0.5, linkedinX + linkedinWidth, y + 0.5);
-  doc.link(linkedinX, y - 3, linkedinWidth, 4, { url: PERSONAL_INFO.linkedin });
+  doc.line(curX, y + 0.5, curX + linkedinWidth, y + 0.5);
+  doc.link(curX, y - 3, linkedinWidth, 4, { url: PERSONAL_INFO.linkedin });
+  curX += linkedinWidth;
 
-  const bullet2 = "  •  ";
+  const linkDot2 = "   •   ";
   doc.setTextColor(slate600[0], slate600[1], slate600[2]);
-  const bullet2X = linkedinX + linkedinWidth;
-  doc.text(bullet2, bullet2X, y);
-  const bullet2Width = doc.getTextWidth(bullet2);
+  doc.text(linkDot2, curX, y);
+  curX += doc.getTextWidth(linkDot2);
 
-  const githubX = bullet2X + bullet2Width;
   const githubText = "github.com/faruqiAhmed";
   doc.setTextColor(slate900[0], slate900[1], slate900[2]);
-  doc.text(githubText, githubX, y);
+  doc.text(githubText, curX, y);
   const githubWidth = doc.getTextWidth(githubText);
-  doc.line(githubX, y + 0.5, githubX + githubWidth, y + 0.5);
-  doc.link(githubX, y - 3, githubWidth, 4, { url: PERSONAL_INFO.github });
+  doc.line(curX, y + 0.5, curX + githubWidth, y + 0.5);
+  doc.link(curX, y - 3, githubWidth, 4, { url: PERSONAL_INFO.github });
+
   y += 4.2;
 
   // Header Divider
   doc.setDrawColor(slate300[0], slate300[1], slate300[2]);
   doc.setLineWidth(0.4);
   doc.line(margin, y, margin + usableWidth, y);
-  y += 4;
+  y += 3.8;
 
   // Section Header Generator
   const drawSection = (title: string) => {

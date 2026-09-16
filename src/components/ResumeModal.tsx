@@ -389,25 +389,28 @@ RECOGNITION
             <p className="text-sm sm:text-base font-semibold text-slate-700 dark:text-[#bdc1c6]">
               Product Manager | Technical Product Management
             </p>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-[#9aa0a6] pt-1">
-              <span>{PERSONAL_INFO.location}</span>
-              <span>•</span>
-              <span>{PERSONAL_INFO.phone}</span>
-              <span>•</span>
-              <span>{PERSONAL_INFO.email}</span>
-              <span>•</span>
-              <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noopener noreferrer" className="text-[#1a73e8] dark:text-[#8ab4f8] font-semibold underline inline-flex items-center gap-1">
-                <span>omarfaruqme.vercel.app</span>
-                <ExternalLink className="w-3 h-3 no-print inline opacity-70" />
-              </a>
-              <span>•</span>
-              <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline">
-                linkedin.com/in/omarfaruqofficial
-              </a>
-              <span>•</span>
-              <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline">
-                github.com/faruqiAhmed
-              </a>
+            <div className="space-y-1 text-xs text-slate-600 dark:text-[#9aa0a6] pt-1">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1">
+                <span>{PERSONAL_INFO.location}</span>
+                <span>•</span>
+                <a href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} className="hover:underline">{PERSONAL_INFO.phone}</a>
+                <span>•</span>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:underline">{PERSONAL_INFO.email}</a>
+              </div>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-[11px] sm:text-xs">
+                <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noopener noreferrer" className="text-[#1a73e8] dark:text-[#8ab4f8] font-semibold underline inline-flex items-center gap-1">
+                  <span>omarfaruqme.vercel.app</span>
+                  <ExternalLink className="w-3 h-3 no-print inline opacity-70" />
+                </a>
+                <span>•</span>
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline hover:text-[#1a73e8]">
+                  linkedin.com/in/omarfaruqofficial
+                </a>
+                <span>•</span>
+                <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline hover:text-[#1a73e8]">
+                  github.com/faruqiAhmed
+                </a>
+              </div>
             </div>
           </div>
 
