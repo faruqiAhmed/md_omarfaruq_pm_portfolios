@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume, onOpenContact, onO
               </span>
             </div>
             <p className="text-xs sm:text-sm text-[#bdc1c6]">
-              Technical Product Manager & Product Strategist • Dhaka, Bangladesh
+              Technical Product Manager & Product Strategist • Mirpur-11, Dhaka, Bangladesh
             </p>
           </div>
 

@@ -261,12 +261,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenScheduleCa
                     <div className="min-w-0">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#6b7280] dark:text-[#9ca3af] block">Location</span>
                       <span className="text-xs sm:text-sm font-semibold text-[#111827] dark:text-[#f3f4f6] truncate block">
-                        Dhaka, Bangladesh (Open to Global Remote)
+                        Mirpur-11, Dhaka, Bangladesh (Open to Global Remote)
                       </span>
                     </div>
                   </div>
                   <button
-                    onClick={() => handleCopy("Dhaka, Bangladesh (Open to Global Remote)", 'location')}
+                    onClick={() => handleCopy("Mirpur-11, Dhaka, Bangladesh (Open to Global Remote)", 'location')}
                     className="p-2 rounded-lg hover:bg-[#f1f3f4] dark:hover:bg-[#25272c] text-[#6b7280] dark:text-[#9ca3af] hover:text-[#111827] dark:hover:text-white transition-colors shrink-0 cursor-pointer"
                     title="Copy location"
                   >

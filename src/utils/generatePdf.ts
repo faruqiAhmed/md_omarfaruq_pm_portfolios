@@ -77,12 +77,9 @@ export const generateResumePdf = () => {
   curX = margin;
 
   const portfolioText = "omarfaruqme.vercel.app";
-  doc.setTextColor(slate900[0], slate900[1], slate900[2]);
+  doc.setTextColor(slate700[0], slate700[1], slate700[2]);
   doc.text(portfolioText, curX, y);
   const portfolioWidth = doc.getTextWidth(portfolioText);
-  doc.setDrawColor(slate900[0], slate900[1], slate900[2]);
-  doc.setLineWidth(0.2);
-  doc.line(curX, y + 0.5, curX + portfolioWidth, y + 0.5);
   doc.link(curX, y - 3, portfolioWidth, 4, { url: PERSONAL_INFO.portfolio || "https://omarfaruqme.vercel.app/" });
   curX += portfolioWidth;
 
@@ -92,10 +89,9 @@ export const generateResumePdf = () => {
   curX += doc.getTextWidth(linkDot1);
 
   const linkedinText = "linkedin.com/in/omarfaruqofficial";
-  doc.setTextColor(slate900[0], slate900[1], slate900[2]);
+  doc.setTextColor(slate700[0], slate700[1], slate700[2]);
   doc.text(linkedinText, curX, y);
   const linkedinWidth = doc.getTextWidth(linkedinText);
-  doc.line(curX, y + 0.5, curX + linkedinWidth, y + 0.5);
   doc.link(curX, y - 3, linkedinWidth, 4, { url: PERSONAL_INFO.linkedin });
   curX += linkedinWidth;
 
@@ -105,10 +101,9 @@ export const generateResumePdf = () => {
   curX += doc.getTextWidth(linkDot2);
 
   const githubText = "github.com/faruqiAhmed";
-  doc.setTextColor(slate900[0], slate900[1], slate900[2]);
+  doc.setTextColor(slate700[0], slate700[1], slate700[2]);
   doc.text(githubText, curX, y);
   const githubWidth = doc.getTextWidth(githubText);
-  doc.line(curX, y + 0.5, curX + githubWidth, y + 0.5);
   doc.link(curX, y - 3, githubWidth, 4, { url: PERSONAL_INFO.github });
 
   y += 4.2;
@@ -253,7 +248,7 @@ export const generateResumePdf = () => {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.2);
   doc.setTextColor(slate700[0], slate700[1], slate700[2]);
-  doc.text('• PM Case Studies: Pathao Cash-Out Redesign (fintech/mobility UX), bKash Merchant Onboarding, Google Maps Parking Finder.', margin, y);
+  doc.text('• PM Case Studies: Pathao Smart Activity Center (Fintech/Mobility UX), bKash Merchant Onboarding, Google Maps Parking Finder.', margin, y);
   y += 4.6;
   doc.text('• Shipped Products: STPay (fintech) · TingTong (social) · Shobar Dhaka (local marketplace) · Robi Alpha · Ullomart (e-commerce).', margin, y);
   y += 5.5;

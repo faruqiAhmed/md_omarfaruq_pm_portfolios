@@ -6,7 +6,7 @@ export const PERSONAL_INFO = {
   title: "Technical Product Manager & Product Strategist",
   roleArchetype: "Google Product Manager Archetype: Product Sense • Systems Architecture • Analytical Execution",
   googleMotto: "Focus on the user and all else will follow.",
-  location: "Dhaka, Bangladesh",
+  location: "Mirpur-11, Dhaka, Bangladesh",
   email: "faruqdeveloper@gmail.com",
   phone: "+880 1642-031736",
   portfolio: "https://omarfaruqme.vercel.app/",

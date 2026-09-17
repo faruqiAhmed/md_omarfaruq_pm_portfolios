@@ -159,7 +159,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   const handleDownloadMarkdown = () => {
     const markdownResume = `# MD OMAR FARUQ
 Product Manager | Technical Product Management
-Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | https://www.linkedin.com/in/omarfaruqofficial/ | https://github.com/faruqiAhmed
+Mirpur-11, Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | https://www.linkedin.com/in/omarfaruqofficial/ | https://github.com/faruqiAhmed
 
 ## SUMMARY
 Product Manager with 1+ years of dedicated product management experience and 4+ years of hands-on iOS engineering experience building and shipping mobile products across fintech, social, and on-demand mobility. Founded and scaled a software company from the ground up, defining business requirements, driving cross-functional teams, and making data-informed trade-offs to take products from concept to launch. Hands-on technical depth enables fast, credible collaboration with engineering on scope, feasibility, and delivery.
@@ -196,7 +196,7 @@ May 2020 – May 2021 | Remote — Australia
 - Served as the primary technical point of contact for clients, converting business needs directly into shipped features.
 
 ## PRODUCT CASE STUDIES
-- Authored independent product management case studies on Pathao, bKash, and Google Maps, analyzing UX friction points and proposing product strategy improvements.
+- Authored independent product management case studies on Pathao (Smart Activity Center), bKash, and Google Maps, analyzing UX friction points and proposing product strategy improvements.
 
 ## SHIPPED PRODUCTS
 STPay (fintech) · TingTong (social) · Shofar Dhaka (local marketplace) · Robi Alpha (telecom rewards) · HiTaxi Driver (ride-hailing) · Ullomart (e-commerce)
@@ -225,7 +225,7 @@ B.Sc. in Computer Science and Engineering — City University, Dhaka, Bangladesh
   const handleCopyText = () => {
     const textResume = `MD OMAR FARUQ
 Product Manager | Technical Product Management
-Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | linkedin.com/in/omarfaruqofficial | github.com/faruqiAhmed
+Mirpur-11, Dhaka, Bangladesh | +880 1642-031736 | faruqdeveloper@gmail.com | https://omarfaruqme.vercel.app/ | linkedin.com/in/omarfaruqofficial | github.com/faruqiAhmed
 
 SUMMARY
 Product Manager with 1+ years of dedicated product management experience and 4+ years of hands-on iOS engineering experience building and shipping mobile products across fintech, social, and on-demand mobility. Founded and scaled a software company from the ground up, defining business requirements, driving cross-functional teams, and making data-informed trade-offs to take products from concept to launch. Hands-on technical depth enables fast, credible collaboration with engineering on scope, feasibility, and delivery.
@@ -389,25 +389,24 @@ RECOGNITION
             <p className="text-sm sm:text-base font-semibold text-slate-700 dark:text-[#bdc1c6]">
               Product Manager | Technical Product Management
             </p>
-            <div className="space-y-1 text-xs text-slate-600 dark:text-[#9aa0a6] pt-1">
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1">
+            <div className="text-xs text-slate-600 dark:text-[#9aa0a6] pt-1 space-y-1">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2.5 gap-y-1">
                 <span>{PERSONAL_INFO.location}</span>
-                <span>•</span>
-                <a href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} className="hover:underline">{PERSONAL_INFO.phone}</a>
-                <span>•</span>
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:underline">{PERSONAL_INFO.email}</a>
+                <span className="text-slate-400 dark:text-slate-600">•</span>
+                <a href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} className="text-slate-700 dark:text-[#bdc1c6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">{PERSONAL_INFO.phone}</a>
+                <span className="text-slate-400 dark:text-slate-600">•</span>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="text-slate-700 dark:text-[#bdc1c6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">{PERSONAL_INFO.email}</a>
               </div>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-[11px] sm:text-xs">
-                <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noopener noreferrer" className="text-[#1a73e8] dark:text-[#8ab4f8] font-semibold underline inline-flex items-center gap-1">
-                  <span>omarfaruqme.vercel.app</span>
-                  <ExternalLink className="w-3 h-3 no-print inline opacity-70" />
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2.5 gap-y-1 text-[11.5px] sm:text-xs">
+                <a href={PERSONAL_INFO.portfolio} target="_blank" rel="noopener noreferrer" className="text-slate-700 dark:text-[#bdc1c6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">
+                  omarfaruqme.vercel.app
                 </a>
-                <span>•</span>
-                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline hover:text-[#1a73e8]">
+                <span className="text-slate-400 dark:text-slate-600">•</span>
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="text-slate-700 dark:text-[#bdc1c6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">
                   linkedin.com/in/omarfaruqofficial
                 </a>
-                <span>•</span>
-                <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="text-slate-900 dark:text-[#8ab4f8] underline hover:text-[#1a73e8]">
+                <span className="text-slate-400 dark:text-slate-600">•</span>
+                <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="text-slate-700 dark:text-[#bdc1c6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">
                   github.com/faruqiAhmed
                 </a>
               </div>
@@ -519,7 +518,7 @@ RECOGNITION
               Key Case Studies & Shipped Products
             </h2>
             <div className="space-y-0.5 text-xs sm:text-[13px] text-slate-700 dark:text-[#bdc1c6] leading-relaxed">
-              <p>• <strong className="text-slate-900 dark:text-[#f1f3f4]">PM Case Studies:</strong> Pathao Cash-Out Redesign (Fintech/Mobility UX), bKash Merchant Onboarding, Google Maps Parking Finder.</p>
+              <p>• <strong className="text-slate-900 dark:text-[#f1f3f4]">PM Case Studies:</strong> Pathao Smart Activity Center (Fintech/Mobility UX), bKash Merchant Onboarding, Google Maps Parking Finder.</p>
               <p>• <strong className="text-slate-900 dark:text-[#f1f3f4]">Shipped Products:</strong> STPay (Fintech) · TingTong (Social) · Shobar Dhaka (Local Marketplace) · Robi Alpha · Ullomart (E-Commerce).</p>
             </div>
           </div>

@@ -155,7 +155,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onOpenScheduleCall }) 
             <div className="flex flex-wrap items-center gap-2 pt-1 text-xs sm:text-sm text-[#5f6368] dark:text-[#9aa0a6]">
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-[#1a1b1f] border border-[#dadce0] dark:border-[#35383f] text-[#3c4043] dark:text-[#bdc1c6]">
                 <MapPin className="w-3.5 h-3.5 text-[#5f6368] dark:text-[#9aa0a6]" />
-                <span>Dhaka, Bangladesh</span>
+                <span>{PERSONAL_INFO.location}</span>
               </div>
 
               <button
@@ -360,7 +360,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onOpenScheduleCall }) 
                   </div>
                   <div className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#f1f3f4] dark:bg-[#25272c] text-[#5f6368] dark:text-[#9aa0a6] shrink-0 border border-[#dadce0]/50 dark:border-[#35383f]">
                     <MapPin className="w-3 h-3 text-[#1a73e8] dark:text-[#8ab4f8]" />
-                    <span>Dhaka / Remote</span>
+                    <span>Mirpur-11, Dhaka / Remote</span>
                   </div>
                 </div>
 
